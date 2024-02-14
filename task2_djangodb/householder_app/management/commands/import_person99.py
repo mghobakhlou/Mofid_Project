@@ -13,19 +13,19 @@ class Command(BaseCommand):
         path = options['csv_file_path']
 
         try:
-            with open(path, 'r', encoding='utf-8') as csvfile:
+            with open(path, 'r', encoding='latin-1') as csvfile:
             # with open(path, 'r') as csvfile:
                 reader = csv.DictReader(csvfile)
 
                 for row in reader:
                     Person99.objects.create(
-                        ParentID=int(row['ParentID']) if row['ParentID'] else None,
-                        BirthDate=parse_date(row['BirthDate']) if row['BirthDate'] else None,
-                        GenderId=int(row['GenderId']) if row['GenderId'] else None,
-                        postalcode=int(row['postalcode']) if row['postalcode'] else None,
-                        Provincename=row['Provincename'] if row['Provincename'] else None,
-                        countyname=row['countyname'] if row['countyname'] else None,
-                        isurban=int(row['isurban']),
+                        ParentID=int(row['ParentID']),
+                        BirthDate=parse_date(row['BirthDate']),
+                        GenderId=int(row['GenderId']),
+                        postalcode=row['postalcode'],
+                        Provincename=row['Provincename'],
+                        countyname=row['countyname'],
+                        isurban=row['isurban'],
 
                         AmCrdtr_95=int(row['AmCrdtr_95']),
                         Amdbtr_95=int(row['Amdbtr_95']),
@@ -54,8 +54,8 @@ class Command(BaseCommand):
                         Card98_Rials=int(row['Card98_Rials']),
                         Card98_PaymentCount=int(row['Card98_PaymentCount']),
 
-                        Card99_Rials=int(row['card99_rials']),
-                        Card99PaymentCount=int(row['card99_paymentcount']),
+                        Card99_Rials=int(row['Card99_Rials']),
+                        Card99PaymentCount=int(row['Card99PaymentCount']),
                         
                         IsBiamrKhas=int(row['IsBiamrKhas']),
                         IsMalool=int(row['IsMalool']),
@@ -66,7 +66,7 @@ class Command(BaseCommand):
                         daramad_Total_Rials=int(row['daramad_Total_Rials']),
                         
                         Cars_Count=int(row['Cars_Count']),
-                        CarsPrice_Sum=int(row['cars_price_sum']),
+                        CarsPrice_Sum=int(row['CarsPrice_Sum']),
                         
                         Trips_Count_AirNotPilgrimage=int(row['Trips_Count_AirNotPilgrimage']),
                         Trips_Count_NotAirNotPilgrimage=int(row['Trips_Count_NotAirNotPilgrimage']),
@@ -74,9 +74,9 @@ class Command(BaseCommand):
                         Trips_Count_NotAirPilgrimage=int(row['Trips_Count_NotAirPilgrimage']),
                         
                         HasMojavezSenfi=int(row['HasMojavezSenfi']),
-                        Senf=row['Senf'] if row['Senf'] else None,
+                        Senf=row['Senf'],
                         HasBimeSalamat=int(row['HasBimeSalamat']),
-                        BimeSalmat_Type=row['BimeSalmat_Type'] if row['BimeSalmat_Type'] else None,
+                        BimeSalmat_Type=row['BimeSalmat_Type']
                     )
 
                 self.stdout.write(self.style.SUCCESS('Successfully imported data from "%s"' % path))

@@ -15,12 +15,12 @@ class Person99(models.Model):
     postalcode = models.CharField(max_length=7)
     Provincename = models.CharField(max_length=100)
     countyname = models.CharField(max_length=100)
-    isurban = models.BooleanField()
+    isurban = models.CharField(max_length=10)
 
     AmCrdtr_95 = models.BigIntegerField()
     Amdbtr_95 = models.BigIntegerField()
     frstPrd_95 = models.BigIntegerField()
-    last_prd_95 = models.BigIntegerField()
+    lstPrd_95 = models.BigIntegerField()
     SmBnft_95 = models.BigIntegerField()
 
     AmCrdtr_96 = models.BigIntegerField()
@@ -64,6 +64,6 @@ class Person99(models.Model):
     Trips_Count_NotAirPilgrimage = models.IntegerField()
     
     HasMojavezSenfi = models.IntegerField()
-    Senf = models.CharField(max_length=200, null=True, blank=True)  # Assuming it can be null
+    Senf = models.CharField(max_length=200)  # Assuming it can be null
     HasBimeSalamat = models.IntegerField()
-    BimeSalmat_Type = models.CharField(max_length=100, null=True, blank=True)  # Assuming it can be null
+    BimeSalmat_Type = models.CharField(max_length=100)  # Assuming it can be null
