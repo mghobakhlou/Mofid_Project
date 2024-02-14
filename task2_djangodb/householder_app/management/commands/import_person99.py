@@ -83,5 +83,5 @@ class Command(BaseCommand):
         except FileNotFoundError:
             raise CommandError('File "%s" does not exist' % path)
         except Exception as e:
-            print()
+            print("oops")
             raise CommandError('Error processing file: %s' % str(e))
