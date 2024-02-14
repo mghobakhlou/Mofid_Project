@@ -1,6 +1,6 @@
 import csv
 from django.core.management.base import BaseCommand, CommandError
-from myapp.models import Person99
+from householder_app.models import Person99
 from django.utils.dateparse import parse_date
 
 class Command(BaseCommand):
@@ -13,63 +13,75 @@ class Command(BaseCommand):
         path = options['csv_file_path']
 
         try:
-            # with open(path, 'r', encoding='utf-8') as csvfile:
             with open(path, 'r', encoding='utf-8') as csvfile:
+            # with open(path, 'r') as csvfile:
                 reader = csv.DictReader(csvfile)
 
                 for row in reader:
                     Person99.objects.create(
-                        parent_id=int(row['parent_id']) if row['parent_id'] else None,
-                        birth_date=parse_date(row['birth_date']),
-                        gender_id=int(row['gender_id']),
-                        postal_code=row['postal_code'],
-                        province_name=row['province_name'],
-                        county_name=row['county_name'],
-                        is_urban=row['is_urban'].lower() in ['true', '1'],
-                        am_creditor_95=int(row['am_creditor_95']),
-                        am_debtor_95=int(row['am_debtor_95']),
-                        first_prd_95=int(row['first_prd_95']),
-                        last_prd_95=int(row['last_prd_95']),
-                        sm_benefit_95=int(row['sm_benefit_95']),
-                        am_creditor_96=int(row['am_creditor_96']),
-                        am_debtor_96=int(row['am_debtor_96']),
-                        first_prd_96=int(row['first_prd_96']),
-                        last_prd_96=int(row['last_prd_96']),
-                        sm_benefit_96=int(row['sm_benefit_96']),
-                        am_creditor_97=int(row['am_creditor_97']),
-                        am_debtor_97=int(row['am_debtor_97']),
-                        first_prd_97=int(row['first_prd_97']),
-                        last_prd_97=int(row['last_prd_97']),
-                        sm_benefit_97=int(row['sm_benefit_97']),
-                        am_creditor_98=int(row['am_creditor_98']),
-                        am_debtor_98=int(row['am_debtor_98']),
-                        first_prd_98=int(row['first_prd_98']),
-                        last_prd_98=int(row['last_prd_98']),
-                        sm_benefit_98=int(row['sm_benefit_98']),
-                        card98_rials=int(row['card98_rials']),
-                        card98_paymentcount=int(row['card98_paymentcount']),
-                        card99_rials=int(row['card99_rials']),
-                        card99_paymentcount=int(row['card99_paymentcount']),
-                        is_bimar_khas=row['is_bimar_khas'].lower() in ['true', '1'],
-                        is_malool=row['is_malool'].lower() in ['true', '1'],
-                        is_bime_pardaz_sandoghha=row['is_bime_pardaz_sandoghha'].lower() in ['true', '1'],
-                        is_bazneshaste_sandoghha=row['is_bazneshaste_sandoghha'].lower() in ['true', '1'],
-                        is_maliati_shaghel=row['is_maliati_shaghel'].lower() in ['true', '1'],
-                        daramad_total_rials=int(row['daramad_total_rials']),
-                        cars_count=int(row['cars_count']),
-                        cars_price_sum=int(row['cars_price_sum']),
-                        trips_count_air_not_pilgrimage=int(row['trips_count_air_not_pilgrimage']),
-                        trips_count_not_air_not_pilgrimage=int(row['trips_count_not_air_not_pilgrimage']),
-                        trips_count_air_pilgrimage=int(row['trips_count_air_pilgrimage']),
-                        trips_count_not_air_pilgrimage=int(row['trips_count_not_air_pilgrimage']),
-                        has_mojavez_senfi=row['has_mojavez_senfi'].lower() in ['true', '1'],
-                        senf=row['senf'] if row['senf'] else None,
-                        has_bime_salamat=row['has_bime_salamat'].lower() in ['true', '1'],
-                        bime_salamat_type=row['bime_salamat_type'] if row['bime_salamat_type'] else None,
+                        ParentID=int(row['ParentID']) if row['ParentID'] else None,
+                        BirthDate=parse_date(row['BirthDate']) if row['BirthDate'] else None,
+                        GenderId=int(row['GenderId']) if row['GenderId'] else None,
+                        postalcode=int(row['postalcode']) if row['postalcode'] else None,
+                        Provincename=row['Provincename'] if row['Provincename'] else None,
+                        countyname=row['countyname'] if row['countyname'] else None,
+                        isurban=int(row['isurban']),
+
+                        AmCrdtr_95=int(row['AmCrdtr_95']),
+                        Amdbtr_95=int(row['Amdbtr_95']),
+                        frstPrd_95=int(row['frstPrd_95']),
+                        lstPrd_95=int(row['lstPrd_95']),
+                        SmBnft_95=int(row['SmBnft_95']),
+                        
+                        AmCrdtr_96=int(row['AmCrdtr_96']),
+                        Amdbtr_96=int(row['Amdbtr_96']),
+                        frstPrd_96=int(row['frstPrd_96']),
+                        lstPrd_96=int(row['lstPrd_96']),
+                        SmBnft_96=int(row['SmBnft_96']),
+                        
+                        AmCrdtr_97=int(row['AmCrdtr_97']),
+                        Amdbtr_97=int(row['Amdbtr_97']),
+                        frstPrd_97=int(row['frstPrd_97']),
+                        lstPrd_97=int(row['lstPrd_97']),
+                        SmBnft_97=int(row['SmBnft_97']),
+                        
+                        AmCrdtr_98=int(row['AmCrdtr_98']),
+                        Amdbtr_98=int(row['Amdbtr_98']),
+                        frstPrd_98=int(row['frstPrd_98']),
+                        lstPrd_98=int(row['lstPrd_98']),
+                        SmBnft_98=int(row['SmBnft_98']),
+                        
+                        Card98_Rials=int(row['Card98_Rials']),
+                        Card98_PaymentCount=int(row['Card98_PaymentCount']),
+
+                        Card99_Rials=int(row['card99_rials']),
+                        Card99PaymentCount=int(row['card99_paymentcount']),
+                        
+                        IsBiamrKhas=int(row['IsBiamrKhas']),
+                        IsMalool=int(row['IsMalool']),
+                        IsBimePardaz_Sandoghha=int(row['IsBimePardaz_Sandoghha']),
+                        IsBazneshaste_Sandoghha=int(row['IsBazneshaste_Sandoghha']),
+                        
+                        IsMaliati_Shaghel=int(row['IsMaliati_Shaghel']),
+                        daramad_Total_Rials=int(row['daramad_Total_Rials']),
+                        
+                        Cars_Count=int(row['Cars_Count']),
+                        CarsPrice_Sum=int(row['cars_price_sum']),
+                        
+                        Trips_Count_AirNotPilgrimage=int(row['Trips_Count_AirNotPilgrimage']),
+                        Trips_Count_NotAirNotPilgrimage=int(row['Trips_Count_NotAirNotPilgrimage']),
+                        Trips_Count_AirPilgrimage=int(row['Trips_Count_AirPilgrimage']),
+                        Trips_Count_NotAirPilgrimage=int(row['Trips_Count_NotAirPilgrimage']),
+                        
+                        HasMojavezSenfi=int(row['HasMojavezSenfi']),
+                        Senf=row['Senf'] if row['Senf'] else None,
+                        HasBimeSalamat=int(row['HasBimeSalamat']),
+                        BimeSalmat_Type=row['BimeSalmat_Type'] if row['BimeSalmat_Type'] else None,
                     )
 
                 self.stdout.write(self.style.SUCCESS('Successfully imported data from "%s"' % path))
         except FileNotFoundError:
             raise CommandError('File "%s" does not exist' % path)
         except Exception as e:
+            print()
             raise CommandError('Error processing file: %s' % str(e))
